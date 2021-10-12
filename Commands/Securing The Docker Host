@@ -62,16 +62,3 @@
           #SAVE THE OUTPUT OF THIS COMMAND TO /etc/audit/rules.d/audit.rules
   ~$ sudo systemctl restart auditd
   ~$ sudo ./docker-bench-security.sh
-  
-  
-  
-  
-      
-  
-  
-  
-
-
-
-
-  

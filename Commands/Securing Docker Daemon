@@ -1,2 +1,28 @@
 # SECURING DOCKER DAEMON
 
+# IMPLEMENTING TLS ENCRYPTION
+  # GENERATING TLS CERTIFICATES
+  ~$ chmod u+x secure-docker-daemon.sh
+          # FIND secure-docker-daemon.sh FILE IN THE SAME REPOSITORY: Docker-Security/Docker TLS Authentication/
+  ~$ ./secure-docker-daemon.sh
+          # REFER 'Main Project.docx' FOR MORE INFO.
+  ~$ ls -alps .docker/
+  
+  # DOCKER DAEMON CONFIGURATION
+  ~$ sudo mkdir /etc/systemd/system/docker.service.d/
+  ~$ sudo nano /etc/systemd/system/docker.service.d/override.conf
+          # MAKE THE CHANGES TO 'override.conf' as shown in 'Main Project.docx'.
+          # SAVE THE FILE.
+  ~$ sudo systemctl restart docker
+  
+# IMPLEMENTING USER NAMESPACES
+~$ sudo nano /etc/systemd/system/docker.service.d/override.conf
+          # MAKE THE CHANGES TO 'override.conf' as shown in 'Main Project.docx'.
+          # SAVE THE FILE.
+~$ sudo systemctl daemon-reload
+~$ sudo systemctl restart docker
+~$ sudo docker container top <CONTAINER ID>
+
+# RUNNING DOCKER BENCH FOR SECURITY AFTER SECURING THE DOCKER DAEMON
+~$ cd docker-bench-security
+~$ sudo ./docker-bench-security.sh

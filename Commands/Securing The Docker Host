@@ -48,9 +48,9 @@
           # SAVE THE FILE - CTRL + X , y , <ENTER>
   ~$ sudo systemctl restart sshd
   
-  # SETTING UP AUDIT RULES FOR DOCKER ARTIFACTS
-  ~$ cd docker-bench-security
-  ~$ sudo ./docker-bench-security.sh -c host_configuration
+# SETTING UP AUDIT RULES FOR DOCKER ARTIFACTS
+~$ cd docker-bench-security
+~$ sudo ./docker-bench-security.sh -c host_configuration
   
   # INSTALLING AUDITD
   ~$ sudo apt-get install auditd

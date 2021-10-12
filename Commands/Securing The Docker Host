@@ -3,62 +3,62 @@
 # SECURITY AUDITING WITH LYNIS
 
   # INSTALLING LATEST VERSION OF LYNIS
-  ~$ sudo git clone https://github.com/CISOfy/lynis.git
-  ~$ cd lynis/
-  ~$ sudo ./lynis update info
+    ~$ sudo git clone https://github.com/CISOfy/lynis.git
+    ~$ cd lynis/
+    ~$ sudo ./lynis update info
 
   # RUNNING LYNIS
-  ~$ sudo lynis audit system
+    ~$ sudo lynis audit system
 
   # CREATING A USER ACCOUNT
-  ~$ sudo useradd -c "<FIRST NAME> <LAST NAME>" -m -s /bin/bash <USERNAME>
-  ~$ sudo passwd <USERNAME>
+    ~$ sudo useradd -c "<FIRST NAME> <LAST NAME>" -m -s /bin/bash <USERNAME>
+    ~$ sudo passwd <USERNAME>
   
   # SETTING UP SUDO ACCESS
-  ~$ sudo usermod -aG <USERNAME>
+    ~$ sudo usermod -aG <USERNAME>
   
   # ADDING USER TO DOCKER GROUP
-  ~$ sudo usermod -aG docker <USERNAME>
+    ~$ sudo usermod -aG docker <USERNAME>
   
   # DISABLING ROOT LOGINS
-  ~$ sudo chsh root
+    ~$ sudo chsh root
           #ENTER ROOT PASSWORD AND CHANGE THE LOGIN SHELL FOR ROOT AS: /usr/sbin/nologin
-  ~$ sudo su
+    ~$ sudo su
           # OUTPUT: This account is currently not available
   
   # SECURING SSH
-  ~$ sudo nano /etc/ssh/sshd_config
+    ~$ sudo nano /etc/ssh/sshd_config
           # SCROLL DOWN AND FIND '#PermitRootLogin yes'.
           # CHANGE 'yes' TO 'no AND REMOVE '#' INFRONT OF PermitRootLogin.
           # AFTER CHANGES MADE '#PermitRootLogin yes' -> 'PermitRootLogin no'.
-          # SAVE THE FILE - CTRL + X , y , <ENTER>
-  ~$ sudo systemctl restart sshd
-  ~$ ssh root@<IP ADDRESS>
+          # SAVE THE FILE.
+    ~$ sudo systemctl restart sshd
+    ~$ ssh root@<IP ADDRESS>
           # CAN'T LOGIN EVEN IF YOU GIVE CORRECT PASSWORD
   
   # SETTING UP KEY-BASED AUTHENTICATION WITH SSH
-  ~$ ssh-keygen -t rsa
-  ~$ ssh-copy-id <USERNAME>@<IP ADDRESS>
+    ~$ ssh-keygen -t rsa
+    ~$ ssh-copy-id <USERNAME>@<IP ADDRESS>
   
   # DISABLE PASSWORD AUTHENTICATION WITH SSH
-  ~$ sudo nano /etc/ssh/sshd_config
+    ~$ sudo nano /etc/ssh/sshd_config
           # SCROLL DOWN AND FIND '#PasswordAuthentication yes'.
           # CHANGE 'yes' TO 'no' AND REMOVE '#' INFRONT OF PasswordAuthentication.
           # AFTER CHANGES MADE '#PasswordAuthentication yes' -> 'PasswordAuthentication no'.
-          # SAVE THE FILE - CTRL + X , y , <ENTER>
-  ~$ sudo systemctl restart sshd
+          # SAVE THE FILE.
+    ~$ sudo systemctl restart sshd
   
 # SETTING UP AUDIT RULES FOR DOCKER ARTIFACTS
-~$ cd docker-bench-security
-~$ sudo ./docker-bench-security.sh -c host_configuration
+  ~$ cd docker-bench-security
+  ~$ sudo ./docker-bench-security.sh -c host_configuration
   
   # INSTALLING AUDITD
-  ~$ sudo apt-get install auditd
+    ~$ sudo apt-get install auditd
   
   # CREATING AUDIT RULES FOR DOCKER ARTIFACTS
-  ~$ sudo auditctl -w <PATH TO ARTIFACT> -k docker
+    ~$ sudo auditctl -w <PATH TO ARTIFACT> -k docker
           # CHECK MAIN PROJECT.DOCX PAGE NO. 17 FOR MORE INFO.
-  ~$ sudo auditctl -l
+    ~$ sudo auditctl -l
           #SAVE THE OUTPUT OF THIS COMMAND TO /etc/audit/rules.d/audit.rules
-  ~$ sudo systemctl restart auditd
-  ~$ sudo ./docker-bench-security.sh
+    ~$ sudo systemctl restart auditd
+    ~$ sudo ./docker-bench-security.sh

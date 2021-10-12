@@ -1,2 +1,2 @@
-# DockerSecurity
-Methods and Practical Implementation to provide Security for Docker Containers.
+# Docker Security
+A Collection of Methods, Guides and Automation Scripts used to Secure Docker Platform and Docker Containers.
